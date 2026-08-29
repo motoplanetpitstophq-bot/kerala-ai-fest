@@ -11,6 +11,7 @@ export function ExperiencesSection() {
       tone="surface"
       eyebrow="Experiences"
       title="What happens at the festival"
+      className="relative overflow-hidden"
     >
       <CoconutPalm
         delay={0.4}
