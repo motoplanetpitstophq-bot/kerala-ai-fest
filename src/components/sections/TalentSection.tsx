@@ -1,5 +1,5 @@
 import { Section } from "@/components/site/Section";
-import { Reveal } from "@/components/site/Reveal";
+import { Marquee } from "@/components/site/Marquee";
 import { TALENT_LABELS } from "@/data/nalai";
 
 export function TalentSection() {
@@ -17,15 +17,28 @@ export function TalentSection() {
         </p>
       }
     >
-      <div className="flex flex-wrap gap-3">
-        {TALENT_LABELS.map((label, i) => (
-          <Reveal key={label} delay={i * 0.05}>
-            <span className="inline-flex rounded-full border border-brand/30 bg-card px-6 py-3 text-sm font-semibold text-foreground/85">
-              {label}
-            </span>
-          </Reveal>
+      <Marquee
+        items={TALENT_LABELS.map((label) => (
+          <span
+            key={label}
+            className="inline-flex rounded-full border border-brand/30 bg-card px-6 py-3 text-sm font-semibold text-foreground/85"
+          >
+            {label}
+          </span>
         ))}
-      </div>
+      />
+      <Marquee
+        className="mt-3"
+        speed={34}
+        items={[...TALENT_LABELS].reverse().map((label) => (
+          <span
+            key={label}
+            className="inline-flex rounded-full border border-kerala/30 bg-card px-6 py-3 text-sm font-semibold text-foreground/70"
+          >
+            {label}
+          </span>
+        ))}
+      />
     </Section>
   );
 }
