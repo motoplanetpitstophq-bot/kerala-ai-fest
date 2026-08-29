@@ -12,6 +12,8 @@ import { GovernmentSection } from "@/components/sections/GovernmentSection";
 import { RoadmapSection } from "@/components/sections/RoadmapSection";
 import { PartnersSection } from "@/components/sections/PartnersSection";
 import { FinalCta } from "@/components/sections/FinalCta";
+import { WaveDivider } from "@/components/site/WaveDivider";
+
 
 const title = "NALAI — Tomorrow's Keralam | AI Festival, 9 October 2026";
 const description =
@@ -35,12 +37,14 @@ function Index() {
   return (
     <>
       <Hero />
+      <WaveDivider />
       <AboutSection />
       <GlanceSection />
       <WhyAttendSection />
       <ExperiencesSection />
       <SolutionsSection />
       <SpeakersSection />
+      <WaveDivider flip />
       <GccSection />
       <TalentSection />
       <GovernmentSection />
@@ -50,3 +54,4 @@ function Index() {
     </>
   );
 }
+
