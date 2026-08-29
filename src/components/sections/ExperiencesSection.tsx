@@ -1,10 +1,14 @@
+import { useRef } from "react";
 import { motion } from "motion/react";
 import { Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
 import { CoconutPalm } from "@/components/site/CoconutPalm";
+import { ParallaxLayer } from "@/components/site/ParallaxLayer";
 import { EXPERIENCES } from "@/data/nalai";
 
 export function ExperiencesSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+
   return (
     <Section
       id="experiences"
@@ -13,16 +17,32 @@ export function ExperiencesSection() {
       title="What happens at the festival"
       className="relative overflow-hidden"
     >
-      <CoconutPalm
-        delay={0.4}
-        className="pointer-events-none absolute -left-10 bottom-0 h-64 w-auto text-kerala/15 md:h-80 lg:h-[26rem]"
-      />
-      <CoconutPalm
-        flip
-        delay={1.6}
-        className="pointer-events-none absolute -right-8 bottom-0 hidden h-56 w-auto text-brand/10 md:block lg:h-72"
-      />
+      <div ref={sectionRef} className="pointer-events-none absolute inset-0" />
+      <ParallaxLayer
+        targetRef={sectionRef}
+        distance={70}
+        scaleRange={[1.06, 0.96]}
+        className="absolute -left-10 bottom-0"
+      >
+        <CoconutPalm
+          delay={0.4}
+          className="h-64 w-auto text-kerala/15 md:h-80 lg:h-[26rem]"
+        />
+      </ParallaxLayer>
+      <ParallaxLayer
+        targetRef={sectionRef}
+        distance={110}
+        scaleRange={[1.1, 0.94]}
+        className="absolute -right-8 bottom-0 hidden md:block"
+      >
+        <CoconutPalm
+          flip
+          delay={1.6}
+          className="h-56 w-auto text-brand/10 lg:h-72"
+        />
+      </ParallaxLayer>
       <div className="relative grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+
         {EXPERIENCES.map((exp, i) => (
           <Reveal key={exp.title} delay={i * 0.05}>
             <motion.article
