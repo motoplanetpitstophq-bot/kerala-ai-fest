@@ -117,19 +117,22 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.3 }}
         >
-          <img
+          <motion.img
             src={heroImage}
             width={1920}
             height={1088}
+            style={{ y: imageY, scale: 1.12 }}
             alt="Kerala backwaters transforming into a futuristic AI network"
             className="h-[240px] w-full object-cover sm:h-[420px]"
           />
+          <ParticleField />
           <motion.div
             aria-hidden
             className="pointer-events-none absolute inset-y-0 w-40 bg-gradient-to-r from-transparent via-brand/10 to-transparent"
             animate={{ x: ["-10%", "460%"] }}
             transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
           />
+
         </motion.div>
       </div>
     </section>
