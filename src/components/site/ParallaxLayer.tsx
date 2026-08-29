@@ -41,7 +41,7 @@ export function ParallaxLayer({
     <motion.div
       ref={localRef}
       aria-hidden
-      style={reduce ? undefined : { y, scale }}
+      style={reduce ? {} : { y, scale }}
       className={cn("pointer-events-none", className)}
     >
       {children}
