@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AgendaRouteImport } from './routes/agenda'
+import { Route as AiSolutionsRouteImport } from './routes/ai-solutions'
+import { Route as ExperiencesRouteImport } from './routes/experiences'
+import { Route as GccIndustryRouteImport } from './routes/gcc-industry'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as RoadmapRouteImport } from './routes/roadmap'
+import { Route as SpeakersRouteImport } from './routes/speakers'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AgendaRoute = AgendaRouteImport.update({
+  id: '/agenda',
+  path: '/agenda',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiSolutionsRoute = AiSolutionsRouteImport.update({
+  id: '/ai-solutions',
+  path: '/ai-solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperiencesRoute = ExperiencesRouteImport.update({
+  id: '/experiences',
+  path: '/experiences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GccIndustryRoute = GccIndustryRouteImport.update({
+  id: '/gcc-industry',
+  path: '/gcc-industry',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoadmapRoute = RoadmapRouteImport.update({
+  id: '/roadmap',
+  path: '/roadmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpeakersRoute = SpeakersRouteImport.update({
+  id: '/speakers',
+  path: '/speakers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/agenda': typeof AgendaRoute
+  '/ai-solutions': typeof AiSolutionsRoute
+  '/experiences': typeof ExperiencesRoute
+  '/gcc-industry': typeof GccIndustryRoute
+  '/register': typeof RegisterRoute
+  '/roadmap': typeof RoadmapRoute
+  '/speakers': typeof SpeakersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/agenda': typeof AgendaRoute
+  '/ai-solutions': typeof AiSolutionsRoute
+  '/experiences': typeof ExperiencesRoute
+  '/gcc-industry': typeof GccIndustryRoute
+  '/register': typeof RegisterRoute
+  '/roadmap': typeof RoadmapRoute
+  '/speakers': typeof SpeakersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/agenda': typeof AgendaRoute
+  '/ai-solutions': typeof AiSolutionsRoute
+  '/experiences': typeof ExperiencesRoute
+  '/gcc-industry': typeof GccIndustryRoute
+  '/register': typeof RegisterRoute
+  '/roadmap': typeof RoadmapRoute
+  '/speakers': typeof SpeakersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/agenda'
+    | '/ai-solutions'
+    | '/experiences'
+    | '/gcc-industry'
+    | '/register'
+    | '/roadmap'
+    | '/speakers'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/agenda'
+    | '/ai-solutions'
+    | '/experiences'
+    | '/gcc-industry'
+    | '/register'
+    | '/roadmap'
+    | '/speakers'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/agenda'
+    | '/ai-solutions'
+    | '/experiences'
+    | '/gcc-industry'
+    | '/register'
+    | '/roadmap'
+    | '/speakers'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AgendaRoute: typeof AgendaRoute
+  AiSolutionsRoute: typeof AiSolutionsRoute
+  ExperiencesRoute: typeof ExperiencesRoute
+  GccIndustryRoute: typeof GccIndustryRoute
+  RegisterRoute: typeof RegisterRoute
+  RoadmapRoute: typeof RoadmapRoute
+  SpeakersRoute: typeof SpeakersRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/agenda': {
+      id: '/agenda'
+      path: '/agenda'
+      fullPath: '/agenda'
+      preLoaderRoute: typeof AgendaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-solutions': {
+      id: '/ai-solutions'
+      path: '/ai-solutions'
+      fullPath: '/ai-solutions'
+      preLoaderRoute: typeof AiSolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experiences': {
+      id: '/experiences'
+      path: '/experiences'
+      fullPath: '/experiences'
+      preLoaderRoute: typeof ExperiencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gcc-industry': {
+      id: '/gcc-industry'
+      path: '/gcc-industry'
+      fullPath: '/gcc-industry'
+      preLoaderRoute: typeof GccIndustryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roadmap': {
+      id: '/roadmap'
+      path: '/roadmap'
+      fullPath: '/roadmap'
+      preLoaderRoute: typeof RoadmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/speakers': {
+      id: '/speakers'
+      path: '/speakers'
+      fullPath: '/speakers'
+      preLoaderRoute: typeof SpeakersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AgendaRoute: AgendaRoute,
+  AiSolutionsRoute: AiSolutionsRoute,
+  ExperiencesRoute: ExperiencesRoute,
+  GccIndustryRoute: GccIndustryRoute,
+  RegisterRoute: RegisterRoute,
+  RoadmapRoute: RoadmapRoute,
+  SpeakersRoute: SpeakersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
