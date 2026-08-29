@@ -11,7 +11,7 @@ export function SpeakerCard({ speaker }: { speaker: Speaker }) {
 
   return (
     <motion.article
-      whileHover={reduce ? undefined : { y: -8 }}
+      {...(reduce ? {} : { whileHover: { y: -8 } })}
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
       className="group relative flex h-full w-[280px] shrink-0 flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-shadow hover:shadow-xl sm:w-[320px]"
     >
@@ -24,7 +24,7 @@ export function SpeakerCard({ speaker }: { speaker: Speaker }) {
           width={800}
           height={1000}
           className="size-full object-cover object-top"
-          whileHover={reduce ? undefined : { scale: 1.06 }}
+          {...(reduce ? {} : { whileHover: { scale: 1.06 } })}
           transition={{ duration: 0.6, ease: "easeOut" }}
         />
 
@@ -48,12 +48,12 @@ export function SpeakerCard({ speaker }: { speaker: Speaker }) {
         {/* animated corner brackets */}
         <motion.span
           className="pointer-events-none absolute left-4 top-4 size-7 border-l-2 border-t-2 border-brand/70"
-          animate={reduce ? undefined : { opacity: [0.4, 1, 0.4] }}
+          {...(reduce ? {} : { animate: { opacity: [0.4, 1, 0.4] } })}
           transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.span
           className="pointer-events-none absolute bottom-4 right-4 size-7 border-b-2 border-r-2 border-brand/70"
-          animate={reduce ? undefined : { opacity: [1, 0.4, 1] }}
+          {...(reduce ? {} : { animate: { opacity: [1, 0.4, 1] } })}
           transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
         />
 
