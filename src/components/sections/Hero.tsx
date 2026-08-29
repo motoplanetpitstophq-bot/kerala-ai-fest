@@ -1,13 +1,28 @@
+import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { CalendarDays, MapPin, ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-kerala-ai.jpg";
+import { ParticleField } from "@/components/site/ParticleField";
 import { EVENT } from "@/data/nalai";
 
 export function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const gridY = useTransform(scrollYProgress, [0, 1], ["0%", "-12%"]);
+
   return (
-    <section className="relative overflow-hidden bg-background">
-      <div className="pointer-events-none absolute inset-0 grid-motif opacity-60" />
+    <section ref={ref} className="relative overflow-hidden bg-background">
+      <motion.div
+        aria-hidden
+        style={{ y: gridY }}
+        className="pointer-events-none absolute inset-0 grid-motif opacity-60"
+      />
+      <ParticleField />
       <motion.div
         aria-hidden
         className="pointer-events-none absolute -right-32 top-10 size-[28rem] rounded-full bg-brand/15 blur-3xl"
@@ -20,6 +35,7 @@ export function Hero() {
         animate={{ scale: [1.1, 1, 1.1] }}
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
       />
+
 
       <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-20 sm:px-8 sm:pb-24 sm:pt-28">
         <motion.p
@@ -101,19 +117,22 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.3 }}
         >
-          <img
+          <motion.img
             src={heroImage}
             width={1920}
             height={1088}
+            style={{ y: imageY, scale: 1.12 }}
             alt="Kerala backwaters transforming into a futuristic AI network"
             className="h-[240px] w-full object-cover sm:h-[420px]"
           />
+          <ParticleField />
           <motion.div
             aria-hidden
             className="pointer-events-none absolute inset-y-0 w-40 bg-gradient-to-r from-transparent via-brand/10 to-transparent"
             animate={{ x: ["-10%", "460%"] }}
             transition={{ duration: 7, repeat: Infinity, ease: "linear" }}
           />
+
         </motion.div>
       </div>
     </section>
