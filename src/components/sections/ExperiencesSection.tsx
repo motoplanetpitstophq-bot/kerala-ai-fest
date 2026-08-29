@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+import { CoconutPalm } from "@/components/site/CoconutPalm";
 import { EXPERIENCES } from "@/data/nalai";
 
 export function ExperiencesSection() {
@@ -10,8 +11,18 @@ export function ExperiencesSection() {
       tone="surface"
       eyebrow="Experiences"
       title="What happens at the festival"
+      className="relative overflow-hidden"
     >
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <CoconutPalm
+        delay={0.4}
+        className="pointer-events-none absolute -left-10 bottom-0 h-64 w-auto text-kerala/15 md:h-80 lg:h-[26rem]"
+      />
+      <CoconutPalm
+        flip
+        delay={1.6}
+        className="pointer-events-none absolute -right-8 bottom-0 hidden h-56 w-auto text-brand/10 md:block lg:h-72"
+      />
+      <div className="relative grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {EXPERIENCES.map((exp, i) => (
           <Reveal key={exp.title} delay={i * 0.05}>
             <motion.article
