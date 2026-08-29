@@ -30,7 +30,7 @@ export function SpeakerCard({ speaker }: { speaker: Speaker }) {
 
         {/* warm wash + bottom fade */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-card/25 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 bg-[color:var(--brand)]/10 mix-blend-multiply opacity-60 transition-opacity duration-500 group-hover:opacity-25" />
+        <div className="pointer-events-none absolute inset-0 bg-brand/10 mix-blend-multiply opacity-60 transition-opacity duration-500 group-hover:opacity-25" />
 
         {/* AI grid overlay */}
         <svg
