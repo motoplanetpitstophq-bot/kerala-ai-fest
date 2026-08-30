@@ -40,7 +40,12 @@ export function GccSection() {
         </Reveal>
         <Reveal delay={0.1}>
           <div className="rounded-2xl border border-border bg-surface p-6 text-muted-foreground">
-            <ConnectionGraphic />
+            <ClientOnly fallback={<GlobeFallback />}>
+              <Suspense fallback={<GlobeFallback />}>
+                <InteractiveGlobe />
+              </Suspense>
+            </ClientOnly>
+            <p className="mt-4 text-center text-sm">Drag the globe to explore</p>
           </div>
         </Reveal>
       </div>
