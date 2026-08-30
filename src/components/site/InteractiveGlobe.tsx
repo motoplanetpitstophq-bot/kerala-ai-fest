@@ -102,43 +102,20 @@ export default function InteractiveGlobe() {
         }}
       />
 
-      <svg
-        viewBox="0 0 400 400"
-        aria-hidden
-        className="pointer-events-none absolute inset-0 size-full"
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center gap-4 text-xs"
       >
-        <defs>
-          <linearGradient id="nalai-globe-arc" x1="0" x2="1">
-            <stop offset="0%" stopColor="var(--color-kerala)" />
-            <stop offset="100%" stopColor="var(--color-brand)" />
-          </linearGradient>
-        </defs>
-        <motion.path
-          id="nalai-globe-path"
-          d="M232 258 C 220 150, 190 110, 150 128"
-          fill="none"
-          stroke="url(#nalai-globe-arc)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.6, ease: "easeInOut" }}
-        />
-        {!reduce && (
-          <circle r="4" fill="var(--color-gold)">
-            <animateMotion dur="3.2s" repeatCount="indefinite" rotate="auto">
-              <mpath href="#nalai-globe-path" />
-            </animateMotion>
-          </circle>
-        )}
-        <text x="240" y="278" fontSize="12" fill="currentColor">
-          Keralam
-        </text>
-        <text x="86" y="120" fontSize="12" fill="currentColor">
-          Middle East
-        </text>
-      </svg>
+        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1">
+          <span className="size-2 rounded-full bg-brand" /> Keralam
+        </span>
+        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1">
+          <span className="size-2 rounded-full bg-kerala" /> Middle East
+        </span>
+      </motion.div>
     </div>
   );
 }
