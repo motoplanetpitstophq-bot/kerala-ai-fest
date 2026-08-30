@@ -5,6 +5,7 @@ import {
   useSpring,
   useTransform,
   useReducedMotion,
+  type MotionValue,
 } from "motion/react";
 import { WHY_ATTEND } from "@/data/nalai";
 import motifImage from "@/assets/why-attend-motif.jpg";
@@ -18,11 +19,10 @@ export function WhyAttendSection() {
     offset: ["start start", "end end"],
   });
   const smooth = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 22,
+    stiffness: 110,
+    damping: 26,
     mass: 0.4,
   });
-  const x = useTransform(smooth, [0, 1], ["2%", "-72%"]);
   const progress = useTransform(smooth, [0, 1], ["0%", "100%"]);
 
   if (reduce) {
@@ -43,9 +43,11 @@ export function WhyAttendSection() {
     );
   }
 
+  const total = WHY_ATTEND.length;
+
   return (
     <section id="why-attend" className="scroll-mt-24">
-      <div ref={trackRef} className="relative h-[420vh]">
+      <div ref={trackRef} className="relative" style={{ height: `${(total + 1) * 90}vh` }}>
         <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden">
           <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
             <p className="eyebrow">Why Attend</p>
@@ -54,23 +56,69 @@ export function WhyAttendSection() {
             </h2>
           </div>
 
-          <motion.div
-            style={{ x }}
-            className="mt-10 flex w-max gap-5 pl-5 will-change-transform sm:pl-8"
-          >
+          <div className="relative mx-auto mt-8 w-full max-w-md flex-1 px-5 sm:px-8">
             {WHY_ATTEND.map((card, i) => (
-              <div key={card.title} className="w-[78vw] sm:w-[46vw] lg:w-[30vw]">
-                <Card card={card} index={i} />
-              </div>
+              <StackedCard
+                key={card.title}
+                card={card}
+                index={i}
+                total={total}
+                progress={smooth}
+              />
             ))}
-          </motion.div>
+          </div>
 
-          <div className="mx-auto mt-10 h-1 w-full max-w-6xl overflow-hidden rounded-full bg-border px-0 sm:px-0">
+          <div className="mx-auto mb-10 mt-6 h-1 w-full max-w-6xl overflow-hidden rounded-full bg-border">
             <motion.div style={{ width: progress }} className="h-full bg-brand" />
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function StackedCard({
+  card,
+  index,
+  total,
+  progress,
+}: {
+  card: { title: string; copy: string };
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const step = 1 / (total + 1);
+  const start = index * step;
+  const end = start + step;
+
+  // pops in from below, then settles and sinks slightly behind as the next card arrives
+  const y = useTransform(
+    progress,
+    [start, end, end + step],
+    [340, 0, -18 - index * 2],
+  );
+  const scale = useTransform(progress, [start, end, end + step], [0.86, 1, 0.94]);
+  const opacity = useTransform(
+    progress,
+    [start, start + step * 0.35, end + step, end + step * 1.4],
+    [0, 1, 1, 0.35],
+  );
+  const rotate = useTransform(
+    progress,
+    [start, end, end + step],
+    [index % 2 === 0 ? 5 : -5, 0, index % 2 === 0 ? -1.5 : 1.5],
+  );
+
+  return (
+    <motion.div
+      style={{ y, scale, opacity, rotate, zIndex: index + 1 }}
+      className="absolute inset-x-5 top-1/2 -translate-y-1/2 will-change-transform sm:inset-x-8"
+    >
+      <div className="shadow-2xl shadow-brand/10">
+        <Card card={card} index={index} />
+      </div>
+    </motion.div>
   );
 }
 
@@ -82,7 +130,7 @@ function Card({
   index: number;
 }) {
   return (
-    <article className="group h-full overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-brand/50 hover:shadow-xl">
+    <article className="group h-full overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-brand/50 hover:shadow-xl">
       <div className="relative h-36 overflow-hidden sm:h-40">
         <img
           src={motifImage}
@@ -106,3 +154,4 @@ function Card({
     </article>
   );
 }
+
