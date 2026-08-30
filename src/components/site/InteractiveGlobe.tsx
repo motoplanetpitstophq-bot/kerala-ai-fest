@@ -43,17 +43,28 @@ export default function InteractiveGlobe() {
         { location: KERALA, size: 0.09 },
         { location: MIDDLE_EAST, size: 0.07 },
       ],
-      onRender: (state) => {
-        if (pointerInteracting.current === null && !reduce) {
-          phiRef.current += 0.0032;
-        }
-        state.phi = phiRef.current + pointerMovement.current / 200;
-        state.width = width * 2;
-        state.height = width * 2;
-      },
+      arcs: [{ from: KERALA, to: MIDDLE_EAST }],
+      arcColor: [0.85, 0.16, 0.18],
+      arcWidth: 0.4,
+      arcHeight: 0.35,
     });
 
+    let frame = 0;
+    const tick = () => {
+      if (pointerInteracting.current === null && !reduce) {
+        phiRef.current += 0.0032;
+      }
+      globe.update({
+        phi: phiRef.current + pointerMovement.current / 200,
+        width: width * 2,
+        height: width * 2,
+      });
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+
     return () => {
+      cancelAnimationFrame(frame);
       globe.destroy();
       window.removeEventListener("resize", onResize);
     };
