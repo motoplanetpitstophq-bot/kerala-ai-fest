@@ -29,13 +29,13 @@ export function SolutionsSection() {
     >
       {/* ambient background */}
       <ParallaxLayer
-        speed={-40}
+        distance={-40}
         className="pointer-events-none absolute -right-24 top-10 -z-10 size-80 rounded-full bg-brand/10 blur-3xl"
       >
         <span />
       </ParallaxLayer>
       <ParallaxLayer
-        speed={30}
+        distance={30}
         className="pointer-events-none absolute -left-24 bottom-0 -z-10 size-72 rounded-full bg-gold/15 blur-3xl"
       >
         <span />
@@ -93,13 +93,13 @@ export function SolutionsSection() {
         {/* Flow panel */}
         <Reveal delay={0.08}>
           <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-6 sm:p-9">
-            <div className="pointer-events-none absolute inset-0 bg-grid-motif opacity-40" />
+            <div className="pointer-events-none absolute inset-0 grid-motif opacity-40" />
             <AnimatePresence mode="wait">
               <motion.div
                 key={solution.name}
                 initial={reduce ? false : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? undefined : { opacity: 0, y: -12 }}
+                exit={reduce ? { opacity: 1 } : { opacity: 0, y: -12 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="relative"
               >
